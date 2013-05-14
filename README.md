@@ -6,17 +6,17 @@ tapestry-cdi allows you to inject JSR 299 managed beans into tapestry services a
 Using @Inject
 =============
 
-Contributes to InjectionProvider so that we can use @Inject (from tapestry 5 or javax.inject).
+Contributes to InjectionProvider so that we can @Inject CDI beans into pages, components and tapestry services.
 
 Injection by Constructor
 ========================
 
-Contributes to ObjectProvider so that we can inject CDI beans into tapestry services.
+Contributes to ObjectProvider so that we can @Inject CDI beans into tapestry services contructors.
 
 Qualifiers
 ==========
 
-Handles cdi qualifiers. You can use qualifiers into pages and component
+Handles cdi qualifiers. You can use qualifiers into pages, components and services
 
 Helpers
 =======
