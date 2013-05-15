@@ -50,6 +50,10 @@ You just have to annotate your beans with CDI annotations and @Inject them into 
     @Named("named")
     private MyNamedCdiBean namedBean;
     
+    @Inject
+    @MyQualifier
+    private MyQualifiedBean qualifiedBean;
+    
 
 For more use cases, you can already take a look at the unit tests.
 
