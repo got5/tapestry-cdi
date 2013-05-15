@@ -4,7 +4,7 @@ As a reminder, CDI is the Java EE standard for Dependency Injection and Aspect O
 Tapestry-CDI module allows injecting all kind of JSR 299 managed beans (POJO, EJB, web service, ...) as they are managed by the CDI-container. 
 
 Features
-========
+--------
 
 * @Inject CDI beans
 
@@ -32,20 +32,34 @@ Features
 
 
 Installation 
-============
+------------
 By adding the module to your project’s dependencies, you are good to go. 
 No more configurations are needed. 
 
 Usage
-=====
+-----
 You just have to annotate your beans with CDI annotations and @Inject them into pages, components or services, and that’s pretty much it.
-The full developer documentation is on its way, but as it is Java standard, the developer used to DI won’t need to read much to be on rails.
-For more details on usage, you can already take a look at the unit tests.
 
-Also , a demo project is coming soon ...
+    import javax.inject.Inject;
+    import javax.inject.Named;
+    ...
+    @Inject
+    private MyCdiBean bean;
+    
+    @Inject
+    @Named("named")
+    private MyNamedCdiBean namedBean;
+    
+
+For more use cases, you can already take a look at the unit tests.
+
+A demo project is coming soon ...
 
 What’s next ?
-=============
-The project is fully functional but it is far from complete. Indeed, CDI brings with it a lot of powerful functionality we would like to see in Tapestry. 
+-------------
+The project is fully functional but it is far from complete. 
+
+Indeed, CDI brings with it a lot of powerful functionality we would like to see in Tapestry. 
+
 For example, CDI scope management is essential when we speak about stateful bean. Then the CDI Event API greatly simplifies the use of events and could be well used in the framework. They are part of the goals for the next release. 
 
