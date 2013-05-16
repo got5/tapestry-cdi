@@ -112,6 +112,7 @@
                 <tomee-plugin.version>1.0.1</tomee-plugin.version>
             </properties>
       		<build>
+      		<finalName>tapestry-cdi</finalName>
       		<plugins>
       		   <plugin>
         		<artifactId>maven-clean-plugin</artifactId>
@@ -147,8 +148,7 @@
                            <artifactId>tomee-maven-plugin</artifactId>
                            <version>${tomee-plugin.version}</version>
                            <configuration>
-                           		  <simpleLog>true</simpleLog>
-          						  <finalName>tapestry-cdi</finalName>	
+                           		  <simpleLog>true</simpleLog>	
                                   <tomeeVersion>${tomee.version}</tomeeVersion>
                                   <!-- <debug>true</debug> -->
                                   <tomeeClassifier>plus</tomeeClassifier>
