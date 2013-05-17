@@ -17,9 +17,9 @@ Features
 
 * Qualifiers
 
-  To disambiguate when injecting same type but different instances, the module provides support for qualifier which is part of CDI specification. 
+  To disambiguate when injecting same type but different implementations, the module provides support for qualifier which is part of CDI specification. 
   You can use qualifiers into pages, components and services.
-  For the time being, this module is the only implementation that supports CDI Qualifier in Tapestry.
+  For the time being, this module is the only implementation that supports CDI Qualifiers in Tapestry.
 
 * Helpers
 
