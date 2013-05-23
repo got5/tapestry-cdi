@@ -16,6 +16,7 @@
 package org.got5.tapestry5.cdi.test.services;
 
 
+import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 import org.got5.tapestry5.cdi.CDIInjectModule;
 
@@ -23,4 +24,8 @@ import org.got5.tapestry5.cdi.CDIInjectModule;
     CDIInjectModule.class
 })
 public final class PojoModule {
+	
+	public static void contributeIgnoredPathsFilter(Configuration<String> configuration) {
+		configuration.add("/webservices/.*");
+	}
 }

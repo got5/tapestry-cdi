@@ -15,7 +15,14 @@
  */
 package org.got5.tapestry5.cdi.test;
 
-import antlr.Grammar;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+import java.net.URL;
+
+import javax.enterprise.inject.spi.Extension;
+
 import org.antlr.runtime.Lexer;
 import org.antlr.stringtemplate.StringTemplate;
 import org.apache.commons.codec.StringEncoder;
@@ -31,9 +38,17 @@ import org.apache.ziplock.JarLocation;
 import org.got5.tapestry5.cdi.CDIInjectModule;
 import org.got5.tapestry5.cdi.annotation.Iced;
 import org.got5.tapestry5.cdi.beans.NamedPojo;
+import org.got5.tapestry5.cdi.beans.ws.HelloWorldService;
 import org.got5.tapestry5.cdi.extension.BeanManagerHolder;
 import org.got5.tapestry5.cdi.extension.TapestryExtension;
-import org.got5.tapestry5.cdi.test.pages.*;
+import org.got5.tapestry5.cdi.test.pages.DessertPage;
+import org.got5.tapestry5.cdi.test.pages.InvalidateSessionPage;
+import org.got5.tapestry5.cdi.test.pages.RequestScopePage;
+import org.got5.tapestry5.cdi.test.pages.SessionScopePage;
+import org.got5.tapestry5.cdi.test.pages.SomePage;
+import org.got5.tapestry5.cdi.test.pages.StatefulPage;
+import org.got5.tapestry5.cdi.test.pages.VegetablePage;
+import org.got5.tapestry5.cdi.test.pages.WSPage;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -48,13 +63,7 @@ import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.enterprise.inject.spi.Extension;
-import java.io.IOException;
-import java.net.URL;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import antlr.Grammar;
 
 @RunWith(Arquillian.class)
 public class InjectTest {
@@ -92,6 +101,7 @@ public class InjectTest {
                         //minimum
                 .addPackage(NamedPojo.class.getPackage().getName())
                 .addPackage(Iced.class.getPackage().getName())
+                .addPackage(HelloWorldService.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(
                         new StringAsset(Descriptors
@@ -105,7 +115,8 @@ public class InjectTest {
                                 .filterName("pojo")
                                 .filterClass(TapestryFilter.class.getName())
                                 .up().createFilterMapping().filterName("pojo")
-                                .urlPattern("/*").up().exportAsString()),
+                                .urlPattern("/*").up()
+                                .exportAsString()),
                         "web.xml")
 
                         // tapestry dependencies, for real project put it in a helper
@@ -122,13 +133,8 @@ public class InjectTest {
                 .addAsLibraries(JarLocation.jarLocation(TapestryModule.class));
     }
 
-
-    /**
-     * Todo - Move all Stateful tests in seperate pages and files. Also make a separate shrink archive for each kind of Bean
-     *
-     * @author - pierremarot
-     * @date - 29/04/13
-     * @time - 15:26
+   /**
+     * Todo - Move all Stateful tests in seperate pages and files. Also make a separate shrink archive for each kind of Bean    
      */
 
     @Test
@@ -200,7 +206,7 @@ public class InjectTest {
 
 
     @Test
-    @InSequence(5)
+    @InSequence(4)
     public void checkInjectionRequestScope() throws IOException {
 
         String output = IO.slurp(indexUrl);
@@ -235,9 +241,6 @@ public class InjectTest {
     /**
      * Todo - Add tests for session state. How  notify cdi about changes in session state objects ?
      *
-     * @author - pierremarot
-     * @date - 29/04/13
-     * @time - 17:46
      */
 
     @Test
@@ -252,9 +255,6 @@ public class InjectTest {
 
         /**
          Todo - Add support to @Inject method | uncomment the line below to test it
-         @author - pierremarot
-         @date - 06/05/13
-         @time - 14:55
          */
         //assertTrue("Injection of pojo with qualifier and inject method in page Dessert",output.contains("dessert5:true"));
 
@@ -268,9 +268,6 @@ public class InjectTest {
         String output = IO.slurp(new URL(indexUrl.toString() + VegetablePage.class.getSimpleName()));
         /**
          Todo - Create a test with drone to play with the conversation scope
-         @author - pierremarot
-         @date - 06/05/13
-         @time - 13:59
          */
 
     }
@@ -280,9 +277,6 @@ public class InjectTest {
     public void checkEventBasic() throws IOException {
         /**
          Todo - find a usecase... issues while fire event in page/ cannot observes in page either
-         @author - pierremarot
-         @date - 06/05/13
-         @time - 19:57
          */
         
     }
@@ -292,9 +286,6 @@ public class InjectTest {
     public void checkBindingType() throws IOException {
         /**
          Todo - Use Produces method with parameter to present a great use case
-         @author - pierremarot
-         @date - 06/05/13
-         @time - 14:02
          */
 
 
@@ -303,15 +294,10 @@ public class InjectTest {
     @Test
     @InSequence(10)
     public void checkWebService() throws IOException {
-        /**
-         Todo - Simple test for web services / which implem ?
-         @author - pierremarot
-         @date - 06/05/13
-         @time - 15:03
-         */
-
+    	 String output = IO.slurp(new URL(indexUrl.toString() + WSPage.class.getSimpleName()));
+    	 assertNotNull(output);
+    	 assertTrue("Injection of webservice failed in page WSPage", output.contains("Hello John"));
     }
-
 
 }
 
