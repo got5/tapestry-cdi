@@ -25,6 +25,9 @@ import org.got5.tapestry5.cdi.CDIInjectModule;
 })
 public final class PojoModule {
 	
+	/**
+	 * Exclude webservices from Tapestry pipeline
+	 * */
 	public static void contributeIgnoredPathsFilter(Configuration<String> configuration) {
 		configuration.add("/webservices/.*");
 	}
