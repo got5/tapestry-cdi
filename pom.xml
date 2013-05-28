@@ -172,7 +172,7 @@
                 <goal>remove-project-artifact</goal>             
             </goals>            
             <configuration>  
-                <removeAll>false</removeAll><!-- When true, remove all built artifacts including all versions. When false, remove all built artifacts of this project version -->             
+                <removeAll>true</removeAll><!-- When true, remove all built artifacts including all versions. When false, remove all built artifacts of this project version -->             
             </configuration>          
         </execution>         
     </executions>       
@@ -187,14 +187,12 @@
       <id>pullrequest-release</id>
       <name>Pull request releases</name>
       <url>http://nexus.pullrequest.org/content/repositories/releases</url>
-      <layout>default</layout>
     </repository>
     <snapshotRepository>
       <uniqueVersion>true</uniqueVersion>
       <id>pullrequest-snapshot</id>
       <name>Pull request snapshots</name>
       <url>http://nexus.pullrequest.org/content/repositories/snapshots</url>
-      <layout>legacy</layout>
     </snapshotRepository>
   </distributionManagement>
 </project>
