@@ -165,4 +165,20 @@
 		  </build>
     </profile>
   </profiles>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>pullrequest-release</id>
+      <name>Pull request releases</name>
+      <url>http://nexus.pullrequest.org/content/repositories/releases</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>true</uniqueVersion>
+      <id>pullrequest-snapshot</id>
+      <name>Pull request snapshots</name>
+      <url>http://nexus.pullrequest.org/content/repositories/snapshots</url>
+      <layout>legacy</layout>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
