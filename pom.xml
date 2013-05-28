@@ -160,7 +160,23 @@
                                   <args>-Xms256m -Xmx1024m</args>
                            </configuration>
                </plugin>
-		      
+		      <plugin>         
+    <groupId>org.codehaus.mojo</groupId>         
+    <artifactId>build-helper-maven-plugin</artifactId>         
+    <version>1.7</version>         
+    <executions>           
+        <execution>             
+            <id>remove-old-artifacts</id>             
+            <phase>package</phase>             
+            <goals>               
+                <goal>remove-project-artifact</goal>             
+            </goals>            
+            <configuration>  
+                <removeAll>false</removeAll><!-- When true, remove all built artifacts including all versions. When false, remove all built artifacts of this project version -->             
+            </configuration>          
+        </execution>         
+    </executions>       
+</plugin>
 		  </plugins>
 		  </build>
     </profile>
