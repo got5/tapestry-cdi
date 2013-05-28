@@ -160,39 +160,8 @@
                                   <args>-Xms256m -Xmx1024m</args>
                            </configuration>
                </plugin>
-		      <plugin>         
-    <groupId>org.codehaus.mojo</groupId>         
-    <artifactId>build-helper-maven-plugin</artifactId>         
-    <version>1.7</version>         
-    <executions>           
-        <execution>             
-            <id>remove-old-artifacts</id>             
-            <phase>package</phase>             
-            <goals>               
-                <goal>remove-project-artifact</goal>             
-            </goals>            
-            <configuration>  
-                <removeAll>true</removeAll><!-- When true, remove all built artifacts including all versions. When false, remove all built artifacts of this project version -->             
-            </configuration>          
-        </execution>         
-    </executions>       
-</plugin>
 		  </plugins>
 		  </build>
     </profile>
   </profiles>
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>pullrequest-release</id>
-      <name>Pull request releases</name>
-      <url>http://nexus.pullrequest.org/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <uniqueVersion>true</uniqueVersion>
-      <id>pullrequest-snapshot</id>
-      <name>Pull request snapshots</name>
-      <url>http://nexus.pullrequest.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 </project>
