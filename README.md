@@ -36,6 +36,39 @@ Installation
 By adding the module to your project’s dependencies, you are good to go. 
 No more configurations are needed. 
 
+Add the tapestry-cdi maven dependency
+
+    <dependency>
+      <groupId>org.got5</groupId>
+	    <artifactId>tapestry-cdi</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    
+and the following maven repositories
+
+    <repository>
+      <id>pullrequest-snapshot</id>
+      <url>http://nexus.pullrequest.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+
+    <repository>
+      <id>pullrequest-release</id>
+      <url>http://nexus.pullrequest.org/content/repositories/releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
+
 Usage
 -----
 You just have to annotate your beans with CDI annotations and @Inject them into pages, components or services, and that’s pretty much it.
