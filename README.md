@@ -8,11 +8,11 @@ Features
 
 * @Inject CDI beans
 
-  Contributes to InjectionProvider so that we can @Inject CDI beans into pages, components and tapestry services.
+  Contributes to [InjectionProvider](http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/services/InjectionProvider.html) so that we can @Inject CDI beans into pages, components and tapestry services.
 
 * Injection by constructor
 
-  Contributes to ObjectProvider so that we can @Inject CDI beans into tapestry services contructors.
+  Contributes to [ObjectProvider](http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/ioc/ObjectProvider.html) so that we can @Inject CDI beans into tapestry services contructors.
   So beans can be injected by field or by constructor.
 
 * Qualifiers
@@ -98,5 +98,5 @@ The project is fully functional but it is far from complete.
 
 Indeed, CDI brings with it a lot of powerful functionality we would like to see in Tapestry. 
 
-For example, CDI scope management is essential when we speak about stateful bean. Then the CDI Event API greatly simplifies the use of events and could be well used in the framework. They are part of the goals for the next release. 
+For example, CDI Event API greatly simplifies the use of events and could be well used in the framework. They are part of the goals for the next release. 
 
