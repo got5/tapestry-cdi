@@ -88,6 +88,80 @@ You just have to annotate your beans coming from the core project with CDI annot
     private MyQualifiedBean qualifiedBean;
     
 
+ 
+Using tapestry services inside CDI beans and vice versa
+-------------------------------------------------------
+
+Suppose you have implemented a bean in your tapestry webapp. It will be, by default, managed by CDI. 
+Now if you want to use some tapestry services into it, you will have to let tapestry-ioc manage it. See snippet below. 
+
+Let tapestry-ioc manage your bean. It will become a tapestry service.
+
+    // A tapestry service declared in AppModule
+    public static void bind(ServiceBinder binder) {
+          binder.bind(TestManager.class);
+    }
+
+Then, your are allowed to add any tapestry services in your implementation in addition of the use of existing CDI beans (coming from the core project for instance) 
+
+      // a tapestry service that uses CDI beans and other tapestry service
+      public class TestManagerImpl implements TestManager {
+           
+           //a CDI bean coming from the core project
+           private UserManager userManager;
+           
+           //a tapestry service injected by constructor (do not use @Inject here)
+           private Request request;
+           
+           public TestManagerImpl(@MyQualifier UserManager userManager, Request request) {
+                  this.userManager = userManager;
+                  this.request = request;
+           }
+           
+           @Override
+           public void doSomething() {
+              // Do something		
+           }
+      }
+
+Note that injection are done by constructor and only CDI bean can be @injected by field. 
+
+
+Using CDI beans as tapestry services
+----------------------------------------
+
+If your CDI bean is coming from the core project and you want tapestry to manage it (for instance to benefit of advanced tapestry-ioc features like decorators or advisors), do it like that :
+
+In your AppModule
+    
+       // declare a CDI bean as a singleton scope tapestry service
+       public static void bind(ServiceBinder binder) {
+           binder.bind(ChoiceManager.class, new ServiceBuilder<ChoiceManager>() {
+              public ChoiceManager buildService(ServiceResources serviceResources) {
+                  return BeanHelper.get(ChoiceManager.class);
+              }
+           });
+       }
+
+For perthread scope, pay attention to handle Dependent scope. Indeed, as you instanciate the bean yourself, it's your responsability to release the bean : 
+
+     // Declare a CDI bean as a per thread scope tapestry service
+     public static void bind(ServiceBinder binder) {
+         binder.bind(ChoiceManager.class, new ServiceBuilder<ChoiceManager>() {
+                public ChoiceManager buildService(ServiceResources serviceResources) {
+                        final BeanInstance beanInstance = BeanHelper.getInstance(ChoiceManager.class, new Annotation[]{});       
+                        ThreadCleanupListener cleanupListener = new ThreadCleanupListener() {
+                               public void threadDidCleanup() {
+                                       beanInstance.release();
+                               }
+                        };
+                        serviceResources.getService(PerthreadManager.class).addThreadCleanupListener(cleanupListener);
+                        return (ChoiceManager)beanInstance.getBean();
+                }
+         }).scope(ScopeConstants.PERTHREAD);
+    }
+
+
 For more use cases, you can already take a look at the unit tests.
 
 A demo project is coming soon ...
