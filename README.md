@@ -88,6 +88,8 @@ You just have to annotate your beans coming from the core project with CDI annot
     private MyQualifiedBean qualifiedBean;
     
 
+For more use cases, you can already take a look at the unit tests.
+
  
 Using tapestry services inside CDI beans and vice versa
 -------------------------------------------------------
@@ -162,9 +164,6 @@ For perthread scope, pay attention to handle Dependent scope. Indeed, as you ins
     }
 
 
-For more use cases, you can already take a look at the unit tests.
-
-A demo project is coming soon ...
 
 What’s next ?
 -------------
@@ -174,3 +173,4 @@ Indeed, CDI brings with it a lot of powerful functionality we would like to see 
 
 For example, CDI Event API greatly simplifies the use of events and could be well used in the framework. They are part of the goals for the next release. 
 
+A demo project is coming soon ...
