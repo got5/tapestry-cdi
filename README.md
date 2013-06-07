@@ -71,7 +71,7 @@ and the following maven repositories
 
 Usage
 -----
-You just have to annotate your beans with CDI annotations and @Inject them into pages, components or services, and that’s pretty much it.
+You just have to annotate your beans coming from the core project with CDI annotations and @Inject them into pages, components or services, and that’s pretty much it.
 
     import javax.inject.Inject;
     import javax.inject.Named;
