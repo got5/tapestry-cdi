@@ -38,9 +38,9 @@ public final class InternalUtils {
 	
 	/**
 	 * Check if the injected field is managed by tapestry (resource or service)
-	 * @param type, the class type
-	 * @param annotationProvider, used to check the annotation of the class/field
-	 * @param locator, the objectLocator
+	 * @param type the class type
+	 * @param annotationProvider used to check the annotation of the class/field
+	 * @param locator the objectLocator
 	 * @return true if the injected field is managed by Tapestry, false otherwise
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -77,7 +77,8 @@ public final class InternalUtils {
 	
 	/**
 	 * Returns the field's annotations corresponding to qualifiers for the current PlasticClass
-	 * @param field, the field potentially annotated with qualifier
+	 * @param type the class type
+	 * @param annotationProvider used to check the annotation of the class/field
 	 * @return an annotation array
 	 */
 	@SuppressWarnings("rawtypes")

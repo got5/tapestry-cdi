@@ -112,7 +112,7 @@ public final class BeanHelper {
 
 	/**
 	 * Get all qualifiers of a type
-	 * @param clazz, the class of which we retrieve the qualifiers
+	 * @param clazz the class of which we retrieve the qualifiers
 	 * @return an annotation array
 	 */
 	public static Annotation[] getQualifiers(final Class<?> clazz) {
