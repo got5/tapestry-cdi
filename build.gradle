@@ -3,9 +3,7 @@ apply plugin: JavaPlugin
 buildDir = 'target/gradle-build'
        
 libraryVersions = [
-    tapestry: '5.3.7', javaeeapi: '6.0-4', tomee : '1.5.1', junit: '4.8.1', arquillian: '1.1.1.Final', jbossJavaeeSpec: '1.0.0.Final', weld: '1.1.1.Final',
-    slf4j: '1.5.10', log4j: '1.2.14', jbossAS6: '6.0.0.Final', glassfish: '4.0-b72', cdi: '1.0-SP4',
-    hamcrest: '1.2', jbossAS7: '7.1.1.Final', shrinkwrapDesc: '2.0.0-alpha-3'
+    tapestry: '5.3.7', jbossJavaeeSpec: '1.0.0.Final', tomee : '1.5.1', junit: '4.8.1', arquillian: '1.1.1.Final', ziplock: '1.5.1', cdi: '1.0-SP4', shrinkwrapDesc: '2.0.0-alpha-3'
 ]
 
 repositories {
@@ -28,7 +26,7 @@ dependencies {
    compileOnly group: 'javax.enterprise', name: 'cdi-api', version: libraryVersions.cdi
 
    testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: libraryVersions.tapestry
-   testCompile group: 'org.apache.openejb', name: 'ziplock', version: '1.5.1'
+   testCompile group: 'org.apache.openejb', name: 'ziplock', version: libraryVersions.ziplock
    
    testCompile group: 'junit', name: 'junit', version: libraryVersions.junit
    testCompile group: 'org.jboss.arquillian.junit', name: 'arquillian-junit-container', version: libraryVersions.arquillian
