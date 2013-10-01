@@ -8,10 +8,7 @@ libraryVersions = [
 
 repositories {
     mavenCentral()
-    // enable if you want to use snapshots published locally
-    //mavenRepo urls: 'file://' + System.getProperty('user.home') + '/.m2/repository'
     mavenRepo urls: 'http://repository.jboss.org/nexus/content/groups/public'
-    mavenRepo urls: 'http://repository.jboss.org/nexus/content/repositories/deprecated'
 }
 
 configurations {
