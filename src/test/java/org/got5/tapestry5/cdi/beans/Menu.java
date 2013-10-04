@@ -15,7 +15,8 @@
  */
 package org.got5.tapestry5.cdi.beans;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
+
 import org.got5.tapestry5.cdi.annotation.Iced;
 
 public class Menu {
