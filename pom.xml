@@ -9,7 +9,7 @@
   
   <groupId>org.got5</groupId>
   <artifactId>tapestry-cdi</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <name>Tapestry 5 CDI Module</name>
   <packaging>${packaging.type}</packaging>
   <description>CDI integration for Tapestry</description>

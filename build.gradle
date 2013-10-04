@@ -1,6 +1,6 @@
 apply plugin: JavaPlugin
 
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 buildDir = 'target/gradle-build'
        
