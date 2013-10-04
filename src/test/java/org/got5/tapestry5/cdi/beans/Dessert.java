@@ -15,7 +15,6 @@
  */
 package org.got5.tapestry5.cdi.beans;
 
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 public interface Dessert extends Serializable {
