@@ -17,21 +17,21 @@ package org.got5.tapestry5.cdi.test.pages;
 
 import javax.inject.Inject;
 
-import org.got5.tapestry5.cdi.beans.DessertImpl;
+import org.got5.tapestry5.cdi.beans.Dessert;
 
 public class SessionScopePage {
 
    @Inject
-   private DessertImpl dessert1;
+   private Dessert dessert1;
 
    @Inject
-   private DessertImpl dessert2;
+   private Dessert dessert2;
 
+   public String getSessionScopePojo(){
 
-    public String getSessionScopePojo(){
-        if(dessert1!=null && dessert1.getName().equals(dessert2.getName())){
-          dessert1.changeName();
-          return "session:" + dessert1.getName().equals(dessert2.getName());
+    	if(dessert1!=null && dessert1.getName().equals(dessert2.getName())){
+    		dessert1.changeName();
+        	return "session:" + dessert1.getName().equals(dessert2.getName());
         }else{
             return "";
         }
