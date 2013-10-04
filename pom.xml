@@ -28,7 +28,15 @@
    </scm>
    <developers>
 	   <developer>
-	       <id>adaptivui</id>
+	   		<id>rmannibucau</id>
+			<name>Romain MANNI-BUCAU</name>
+			<roles>
+		    	<role>Developer</role>
+		    </roles>
+		    <timezone>+1</timezone>
+		</developer>
+		<developer>
+		    <id>adaptivui</id>
 	       <name>Nourredine KHADRI</name>
 	       <email>nourredine.k@gmail.com</email>
 	       <roles>
@@ -47,14 +55,6 @@
 	   <developer>
 	       <id>got5</id>
 	       <name>François FACON</name>
-	       <roles>
-	       		<role>Developer</role>
-	       </roles>
-	       <timezone>+1</timezone>
-	    </developer>
-	   <developer>
-	       <id>rmannibucau</id>
-	       <name>Romain MANNI-BUCAU</name>
 	       <roles>
 	       		<role>Developer</role>
 	       </roles>
@@ -95,6 +95,11 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>commons-httpclient</groupId>
+    	<artifactId>commons-httpclient</artifactId>
+    	<version>${commons-httpclient.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -134,6 +139,7 @@
     <junit.version>4.11</junit.version>
     <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
     <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+    <commons-httpclient.version>3.1</commons-httpclient.version>
   </properties>
   
   <profiles>
