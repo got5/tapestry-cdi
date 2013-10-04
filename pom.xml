@@ -131,7 +131,7 @@
   </build>
 
   <properties>
-    <tapestry-cdi.version>0.0.1-SNAPSHOT</tapestry-cdi.version>
+    <tapestry-cdi.version>0.0.1</tapestry-cdi.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javaee-api.version>6.0-4</javaee-api.version>
     <tapestry-core.version>5.3.7</tapestry-core.version>
