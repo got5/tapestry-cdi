@@ -16,19 +16,17 @@
 package org.got5.tapestry5.cdi.test.services;
 
 
-import org.apache.tapestry5.ioc.Configuration;
+import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
+import org.apache.tapestry5.ioc.services.ClasspathURLConverter;
 import org.got5.tapestry5.cdi.CDIInjectModule;
 
 @SubModule({
     CDIInjectModule.class
 })
 public final class PojoModule {
-	
-	/**
-	 * Exclude webservices from Tapestry pipeline
-	 * */
-	public static void contributeIgnoredPathsFilter(Configuration<String> configuration) {
-		configuration.add("/webservices/.*");
-	}
+	public static void contributeServiceOverride(MappedConfiguration<Class,Object> configuration)
+	{
+		configuration.add(ClasspathURLConverter.class, new ClasspathURLConverterJBoss7Dot1());
+	}  
 }
