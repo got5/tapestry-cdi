@@ -1,11 +1,11 @@
 apply plugin: JavaPlugin
 
-version = '0.0.1'
+version = '0.0.2-SNAPSHOT'
 
 buildDir = 'target/gradle-build'
        
 libraryVersions = [
-    tapestry: '5.3.7', 
+    tapestry: '5.4-alpha-22', 
     javaeeapi: '6.0-4', 
     tomee: '1.5.2', 
     ziplock: '1.5.1',
@@ -18,13 +18,15 @@ libraryVersions = [
     glassfishDistrib: '3.1', 
     cdi: '1.0-SP4',
     jbossAS7: '7.1.1.Final', 
-    shrinkwrapDesc: '2.0.0-alpha-3'
+    shrinkwrapDesc: '2.0.0-alpha-3',
+    stringTemplate: '3.2.1'
 ]
 
 repositories {
     mavenCentral()
     mavenRepo urls: 'http://repository.jboss.org/nexus/content/groups/public'
     mavenRepo urls: 'http://repository.jboss.org/nexus/content/repositories'
+    mavenRepo urls: 'https://repository.apache.org/content/groups/staging' // For access to Apache Staging (Preview) packages
 }
 
 configurations {
@@ -46,6 +48,7 @@ dependencies {
     testCompile group: 'org.apache.openejb', name: 'ziplock', version: libraryVersions.ziplock
     testCompile group: 'junit', name: 'junit', version: libraryVersions.junit
     testCompile group: 'commons-httpclient', name: 'commons-httpclient', version: libraryVersions.commonsHttpclient
+    testCompile group: 'org.antlr', name:'stringtemplate', version: libraryVersions.stringTemplate
     
     testCompile group: 'org.jboss.arquillian.junit', name: 'arquillian-junit-container', version: libraryVersions.arquillian
     testCompile group: 'org.jboss.shrinkwrap.descriptors', name: 'shrinkwrap-descriptors-api-javaee', version: libraryVersions.shrinkwrapDesc
