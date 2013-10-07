@@ -25,7 +25,6 @@ import java.net.URL;
 import javax.enterprise.inject.spi.Extension;
 
 import org.antlr.runtime.Lexer;
-import org.antlr.stringtemplate.StringTemplate;
 import org.apache.commons.codec.StringEncoder;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -37,7 +36,7 @@ import org.apache.tapestry5.ioc.IOCConstants;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.plastic.PlasticClass;
-import org.apache.tapestry5.services.TapestryModule;
+import org.apache.tapestry5.modules.TapestryModule;
 import org.apache.ziplock.JarLocation;
 import org.got5.tapestry5.cdi.CDIInjectModule;
 import org.got5.tapestry5.cdi.extension.BeanManagerHolder;
@@ -66,7 +65,6 @@ import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import antlr.Grammar;
 
 @RunWith(Arquillian.class)
 public class InjectTest {
@@ -100,8 +98,6 @@ public class InjectTest {
                 // class: new TapestryArchive(name)...
                 .addAsLibraries(JarLocation.jarLocation(HttpClient.class))
                 .addAsLibraries(JarLocation.jarLocation(Lexer.class))
-                .addAsLibraries(JarLocation.jarLocation(Grammar.class))
-                .addAsLibraries(JarLocation.jarLocation(StringTemplate.class))
                 .addAsLibraries(JarLocation.jarLocation(StringEncoder.class))
                 .addAsLibraries(JarLocation.jarLocation(IOCConstants.class))
                 .addAsLibraries(JarLocation.jarLocation(PlasticClass.class))
@@ -109,12 +105,9 @@ public class InjectTest {
                 .addAsLibraries(JarLocation.jarLocation(InjectService.class))
                 .addAsLibraries(JarLocation.jarLocation(Mapper.class))
                 .addAsLibraries(JarLocation.jarLocation(TapestryModule.class))
-                // for jbossAS7 server
-                .addAsLibraries(JarLocation.jarLocation(org.jboss.shrinkwrap.api.asset.Asset.class))
                 // for Glassfish container
-                .addAsLibraries(JarLocation.jarLocation(org.slf4j.Logger.class))
-    			.addAsLibraries(JarLocation.jarLocation(javassist.CtConstructor.class));
-
+                .addAsLibraries(JarLocation.jarLocation(org.slf4j.Logger.class));
+    			
     			// our test resources (src/test) = the webapp
     			// add template resources from package "pages"
     			Package pagePackage = toPackage(indexPage.getParent());
