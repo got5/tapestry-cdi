@@ -2,6 +2,7 @@
 .project
 .settings/
 .gradle/
+gradle.properties
 target/
 build/
 *.iml
