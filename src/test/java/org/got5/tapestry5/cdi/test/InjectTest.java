@@ -300,11 +300,7 @@ public class InjectTest {
      * @param archiveName the archive name
      * @return a JarArchive object
      */
-    /**
-     * @param archiveName
-     * @return
-     */
-    private static JavaArchive createJarArchive(String archiveName){
+     private static JavaArchive createJarArchive(String archiveName){
     	JavaArchive jar =  ShrinkWrap
     			// our module (src/main), as we are in the same project building
                 // the jar on the fly
@@ -386,11 +382,6 @@ public class InjectTest {
      * @param url an url to connect to
      * @param client an HTTPClient to use to serve the url
      * @return the response as a String
-     */
-    /**
-     * @param url
-     * @param client
-     * @return
      */
     private String getResponse(URL url, HttpClient client) {
     	HttpClient newClient = client==null ? new HttpClient() : client;

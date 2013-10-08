@@ -40,6 +40,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * An InjectionProvider implementation that handles CDI beans
+ * Check first that the bean is not managed by tapestry-ioc
+ * If so, it is ignored by CDI 
+ */
 @UsesOrderedConfiguration(InjectionProvider2.class)
 public final class CDIInjectionProvider implements InjectionProvider2 {
 	private final ComponentClassCache cache;
@@ -55,6 +60,9 @@ public final class CDIInjectionProvider implements InjectionProvider2 {
 		this.cache = cache;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.tapestry5.services.transform.InjectionProvider2#provideInjection(org.apache.tapestry5.plastic.PlasticField, org.apache.tapestry5.ioc.ObjectLocator, org.apache.tapestry5.model.MutableComponentModel)
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean provideInjection(final PlasticField field, final ObjectLocator locator, final MutableComponentModel componentModel) {

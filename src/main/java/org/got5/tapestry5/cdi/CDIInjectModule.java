@@ -23,6 +23,10 @@ import org.apache.tapestry5.ioc.annotations.Local;
 import org.apache.tapestry5.ioc.services.MasterObjectProvider;
 import org.apache.tapestry5.services.transform.InjectionProvider2;
 
+/**
+ * This module provides an InjectionProvider and an ObjectProvider to handle CDI beans
+ *
+ */
 public final class CDIInjectModule {
 	
 	public static void bind(ServiceBinder binder) {

@@ -29,6 +29,10 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * A collection of utility methods including a method that checks if a bean is managed by tapestry-ioc or not 
+ *
+ */
 public final class InternalUtils {
 	
 	private static Logger logger = LoggerFactory.getLogger(InternalUtils.class); 

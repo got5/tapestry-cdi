@@ -20,6 +20,10 @@ import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 
+/**
+ * A Holder that provides the {@link javax.enterprise.inject.spi.BeanManager BeanManager} instance by observing the CDI {@link javax.enterprise.inject.spi.AfterBeanDiscovery AfterBeanDiscovery} event
+ *
+ */
 public class BeanManagerHolder implements Extension {
     private static BeanManagerHolder HOLDER = new BeanManagerHolder();
     private BeanManager beanManager;
@@ -28,6 +32,11 @@ public class BeanManagerHolder implements Extension {
         return HOLDER.beanManager;
     }
 
+    /**
+     * Store the {@link javax.enterprise.inject.spi.BeanManager BeanManager} during the container startup
+     * @param afterBeanDiscovery the CDI event
+     * @param bm a BeanManager object
+     */
     protected void saveBeanManager(@Observes final AfterBeanDiscovery afterBeanDiscovery, final BeanManager bm) {
         HOLDER.beanManager = bm;
     }

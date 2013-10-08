@@ -17,6 +17,10 @@ package org.got5.tapestry5.cdi;
 
 import javax.enterprise.context.spi.CreationalContext;
 
+/**
+ * A CDI bean wrapper that embeds a {@link javax.enterprise.context.spi.CreationalContext CreationalContext}
+ *
+ */
 public class BeanInstance {
     private final Object bean;
     private boolean releasable;

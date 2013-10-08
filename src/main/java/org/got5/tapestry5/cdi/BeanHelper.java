@@ -30,6 +30,10 @@ import org.got5.tapestry5.cdi.extension.BeanManagerHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Helper that provides you handy methods to get a BeanManager instance or any CDI bean instance from its interface and eventually qualifiers 
+ *
+ */
 public final class BeanHelper {
 
 	private static Logger logger = LoggerFactory.getLogger(BeanHelper.class); 

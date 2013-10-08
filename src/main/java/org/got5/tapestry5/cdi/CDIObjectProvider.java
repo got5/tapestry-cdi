@@ -26,10 +26,19 @@ import org.got5.tapestry5.cdi.internal.utils.InternalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * An ObjectProvider implementation that handles CDI beans
+ * Check first if the bean is managed by tapestry-ioc
+ * if so, the bean is ignored.
+ *
+ */
 public class CDIObjectProvider implements ObjectProvider {
 
 	private static Logger logger = LoggerFactory.getLogger(CDIObjectProvider.class); 
 
+	/* (non-Javadoc)
+	 * @see org.apache.tapestry5.ioc.ObjectProvider#provide(java.lang.Class, org.apache.tapestry5.ioc.AnnotationProvider, org.apache.tapestry5.ioc.ObjectLocator)
+	 */
 	@Override
 	public <T> T provide(Class<T> objectType,
 			AnnotationProvider annotationProvider, ObjectLocator locator) {
