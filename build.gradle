@@ -18,8 +18,7 @@ libraryVersions = [
     glassfishDistrib: '3.1', 
     cdi: '1.0-SP4',
     jbossAS7: '7.1.1.Final', 
-    shrinkwrapDesc: '2.0.0-alpha-3',
-    stringTemplate: '3.2.1'
+    shrinkwrapDesc: '2.0.0-alpha-3'
 ]
 
 repositories {
@@ -48,7 +47,6 @@ dependencies {
     testCompile group: 'org.apache.openejb', name: 'ziplock', version: libraryVersions.ziplock
     testCompile group: 'junit', name: 'junit', version: libraryVersions.junit
     testCompile group: 'commons-httpclient', name: 'commons-httpclient', version: libraryVersions.commonsHttpclient
-    testCompile group: 'org.antlr', name:'stringtemplate', version: libraryVersions.stringTemplate
     
     testCompile group: 'org.jboss.arquillian.junit', name: 'arquillian-junit-container', version: libraryVersions.arquillian
     testCompile group: 'org.jboss.shrinkwrap.descriptors', name: 'shrinkwrap-descriptors-api-javaee', version: libraryVersions.shrinkwrapDesc
