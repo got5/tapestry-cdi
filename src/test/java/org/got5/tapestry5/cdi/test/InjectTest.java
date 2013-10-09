@@ -105,6 +105,8 @@ public class InjectTest {
                 .addAsLibraries(JarLocation.jarLocation(InjectService.class))
                 .addAsLibraries(JarLocation.jarLocation(Mapper.class))
                 .addAsLibraries(JarLocation.jarLocation(TapestryModule.class))
+                // for jbossAS7 server
+                .addAsLibraries(JarLocation.jarLocation(org.jboss.shrinkwrap.api.asset.Asset.class))
                 // for Glassfish container
                 .addAsLibraries(JarLocation.jarLocation(org.slf4j.Logger.class));
     			
