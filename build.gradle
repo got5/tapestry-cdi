@@ -16,6 +16,7 @@ libraryVersions = [
     arquillianGlassfish: '1.0.0.CR4',
     glassfish: '4.0', 
     glassfishDistrib: '3.1', 
+    jbossDistrib: '7.1.1.Final', 
     cdi: '1.0-SP4',
     jbossAS7: '7.1.1.Final', 
     shrinkwrapDesc: '2.0.0-alpha-3'
@@ -56,7 +57,7 @@ dependencies {
 
     jbossAS7ManagedTestRuntime group: 'org.jboss.as', name: 'jboss-as-arquillian-container-managed', version: libraryVersions.jbossAS7
     jbossAS7ManagedTestRuntime group: 'org.jboss.spec', name: 'jboss-javaee-6.0', version: libraryVersions.jbossJavaeeSpec
-    jboss "org.jboss.as:jboss-as-dist:7.1.1.Final@zip"
+    jboss "org.jboss.as:jboss-as-dist:$libraryVersions.jbossDistrib@zip"
  
     glassfishManagedTestRuntime group: 'org.jboss.arquillian.container', name: 'arquillian-glassfish-managed-3.1', version: libraryVersions.arquillianGlassfish
     glassfish "org.glassfish.distributions:glassfish:$libraryVersions.glassfishDistrib@zip"    
