@@ -90,6 +90,14 @@ You just have to annotate your beans coming from the core project with CDI annot
 
 For more use cases, you can already take a look at the unit tests.
 
+### Notes ###
+
+* CDI beans can come from a business layer and/or declared inside your tapestry front project if you want. 
+
+* __Every bean present in a tapestry instrumented package will not be loaded by CDI__. Actually, a [veto](http://docs.jboss.org/cdi/api/1.0/javax/enterprise/inject/spi/ProcessAnnotatedType.html#veto%28%29) is set on beans under _yourRootPackage_.pages/components/mixins/base.
+This is to prevent loading conflicts between CDI and tapestry-ioc. So, make sure that your beans are well packaged.
+
+* If you bind a bean as a tapestry service in your appModule, tapestry-ioc will take precedence over CDI
  
 Using tapestry services inside CDI beans and vice versa
 -------------------------------------------------------
@@ -170,7 +178,5 @@ What’s next ?
 The project is fully functional but it is far from complete. 
 
 Indeed, CDI brings with it a lot of powerful functionality we would like to see in Tapestry. 
-
-For example, CDI Event API greatly simplifies the use of events and could be well used in the framework. They are part of the goals for the next release. 
 
 A demo project is coming soon ...
