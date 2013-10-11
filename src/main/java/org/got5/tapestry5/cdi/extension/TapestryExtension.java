@@ -16,12 +16,10 @@
 package org.got5.tapestry5.cdi.extension;
 
 import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessAnnotatedType;
 
 import org.apache.tapestry5.internal.InternalConstants;
-import org.got5.tapestry5.cdi.BeanHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
