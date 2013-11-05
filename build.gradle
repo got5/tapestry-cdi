@@ -1,6 +1,6 @@
 apply plugin: JavaPlugin
 
-version = '0.0.2-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 
 buildDir = 'target/gradle-build'
        
@@ -14,8 +14,7 @@ libraryVersions = [
     arquillian: '1.1.1.Final', 
     jbossJavaeeSpec: '1.0.0.Final',
     arquillianGlassfish: '1.0.0.CR4',
-    glassfish: '4.0', 
-    glassfishDistrib: '3.1', 
+    glassfishDistrib: '3.1.1-b04', 
     jbossDistrib: '7.1.1.Final', 
     cdi: '1.0-SP4',
     jbossAS7: '7.1.1.Final', 
@@ -110,6 +109,6 @@ test {
 jar {	
 
 	manifest {	
-		attributes 'Tapestry-Module-Classes': 'org.got5.tapestry5.cdi.CDIInjectModule'
+		attributes 'Tapestry-Module-Classes': 'org.apache.tapestry5.cdi.CDIInjectModule'
 		}
  }
