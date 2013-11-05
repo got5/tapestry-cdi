@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Tapestry-Module-Classes: org.got5.tapestry5.cdi.test.services.PojoModule
-Created-By: Apache Maven
-
-
