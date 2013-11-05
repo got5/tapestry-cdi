@@ -78,12 +78,10 @@ public final class CDIInjectionProvider implements InjectionProvider2 {
 					}}, 
 				locator)){
 			logger.debug("Field "+field.getName()+" of type "+field.getTypeName()+" is managed by Tapestry");
-			System.out.println("Field "+field.getName()+" of type "+field.getTypeName()+" is managed by Tapestry");
 			return false;
 		}
 
 		logger.debug("Field "+field.getName()+" of type "+field.getTypeName()+" will be managed by CDI");
-System.out.println("Field "+field.getName()+" of type "+field.getTypeName()+" will be managed by CDI");
 		final Class<?> fieldClass = load(field.getTypeName());
 		final Annotation[] qualifiers = 
 				InternalUtils.getFieldQualifiers(type, new AnnotationProvider(){
@@ -95,10 +93,8 @@ System.out.println("Field "+field.getName()+" of type "+field.getTypeName()+" wi
 					}});
 		
 		logger.debug("["+field.getName()+"]["+componentModel.getComponentClassName()+"] Qualifiers : ");
-		System.out.println("["+field.getName()+"]["+componentModel.getComponentClassName()+"] Qualifiers : ");
 		for (Annotation annotation : qualifiers) {
 			logger.debug("==> "+annotation.toString());
-			System.out.println("==> "+annotation.toString());
 		}
 		try {
 			final BeanInstance instance = getInstance(fieldClass, qualifiers);
@@ -113,12 +109,10 @@ System.out.println("Field "+field.getName()+" of type "+field.getTypeName()+" wi
 				}
 			}
 			logger.debug("Is field "+field.getName()+" of type "+field.getTypeName()+" has been succesfully managed by CDI ? "+resolved);
-			System.out.println("Is field "+field.getName()+" of type "+field.getTypeName()+" has been succesfully managed by CDI ? "+resolved);
 			return resolved;
 		} catch (IllegalStateException isa) {
 			logger.debug("CDI failed to manage the field "+field.getName()+" of type "+field.getTypeName());
-			System.out.println("CDI failed to manage the field "+field.getName()+" of type "+field.getTypeName());
-					return false;
+			return false;
 		}
 	}
 

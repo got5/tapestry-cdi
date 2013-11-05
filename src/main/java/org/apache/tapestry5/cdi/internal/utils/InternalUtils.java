@@ -41,12 +41,12 @@ import org.slf4j.LoggerFactory;
  *
  */
 public final class InternalUtils {
-	
+
 	private static Logger logger = LoggerFactory.getLogger(InternalUtils.class); 
 
 	@SuppressWarnings("rawtypes")
 	private static final Map<Class, Annotation[]> annotationsCache = new HashMap<Class, Annotation[]>();
-	
+
 	private static final List<String> tapestry_injectable_resources = Arrays.asList(
 			new String[]{
 					ComponentResources.class.getName(),
@@ -76,27 +76,25 @@ public final class InternalUtils {
 		 */
 		try {
 			if(	
-				tapestry_injectable_resources.contains(type.getName()) 		
+					tapestry_injectable_resources.contains(type.getName()) 		
 					|| isAnnotation(annotationProvider, Symbol.class) 
 					|| isAnnotation(annotationProvider, Path.class)
 					|| locator.getService(type)!=null
-				){
+					){
 				logger.debug(type+" is a Tapestry resources or service");
-				System.out.println(type+" is a Tapestry resources or service");
 				return true;
 			}
 		} catch (RuntimeException e) {
 			// do nothing, the service is not managed by tapestry
 			logger.debug(type +" is not a known service of the tapestry registry");
-			System.out.println(type +" is not a known service of the tapestry registry");
 		}
 		return false;
 	}
-	
+
 	private static <T extends Annotation> boolean isAnnotation(AnnotationProvider annotationProvider, final Class<T> annotation) {
 		return annotationProvider.getAnnotation(
 				new Annotation(){
-        			@Override
+					@Override
 					public Class<? extends Annotation> annotationType() {
 						return annotation;
 					}
@@ -112,28 +110,24 @@ public final class InternalUtils {
 	@SuppressWarnings("rawtypes")
 	public static Annotation[] getFieldQualifiers(final Class type,final AnnotationProvider annotationProvider) {
 		logger.debug("Field type : "+type);
-		System.out.println("Field type : "+type);
 		final Annotation[] annotations;
 		if (!annotationsCache.containsKey(type)) {
 			synchronized (annotationsCache) {
 				if (!annotationsCache.containsKey(type)) {
 					logger.debug("Put qualifiers in cache for type : "+type);
-					System.out.println("Put qualifiers in cache for type : "+type);
 					annotationsCache.put(type, getQualifiers(type));
 				}
 			}
 		}
 		annotations = annotationsCache.get(type);
-		
+
 		List<Annotation> qualifiers = new ArrayList<Annotation>();
 		for (Annotation annotation : annotations) {
 			boolean isAnnotationPresent = annotationProvider.getAnnotation(annotation.annotationType())!=null;
 			logger.debug("Is "+type+" has qualifier : "+annotation.annotationType()+" ? "+isAnnotationPresent);
-			System.out.println("Is "+type+" has qualifier : "+annotation.annotationType()+" ? "+isAnnotationPresent);
-					if(isAnnotationPresent){
+			if(isAnnotationPresent){
 				logger.debug("Qualifier "+annotation+" found for "+type);
-				System.out.println("Qualifier "+annotation+" found for "+type);
-						qualifiers.add(annotation);
+				qualifiers.add(annotation);
 			}
 		}
 		return qualifiers.toArray(new Annotation[qualifiers.size()]);

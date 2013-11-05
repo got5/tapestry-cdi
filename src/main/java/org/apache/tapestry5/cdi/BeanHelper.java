@@ -52,13 +52,11 @@ public final class BeanHelper {
 		final BeanManager beanManager = getBeanManager();
 		final Set<Bean<?>> beans = beanManager.getBeans(clazz, qualifiers);
 		logger.debug("getInstance() - beans found : "+beans+" for class "+clazz.getSimpleName());
-		System.out.println("getInstance() - beans found : "+beans+" for class "+clazz.getSimpleName());
 		if (beans == null || beans.isEmpty()) {
 			return null;
 		}
 		final Bean<?> bean = beanManager.resolve(beans);
 		logger.debug("getInstance() - bean resolved : "+bean);
-		System.out.println("getInstance() - bean resolved : "+bean);
 		final CreationalContext<?> creationalContext = beanManager.createCreationalContext(bean);
 		final Object result = beanManager.getReference(bean, clazz, creationalContext);
 		return new BeanInstance(result, creationalContext, Dependent.class.equals(bean.getScope()));
@@ -82,11 +80,9 @@ public final class BeanHelper {
 		if(beans!=null && beans.size()>0) {
 			Bean<T> bean = (Bean<T>) beanManager.resolve(beans);
 			logger.debug("Bean found : "+bean);
-			System.out.println("Bean found : "+bean);
 			CreationalContext<T> ctx = beanManager.createCreationalContext(bean);
 			T o = clazz.cast(beanManager.getReference(bean, clazz, ctx));
 			logger.debug("Found and returning: "+clazz.getCanonicalName());
-			System.out.println("Found and returning: "+clazz.getCanonicalName());
 			return o;
 		}
 		return null;
@@ -111,7 +107,6 @@ public final class BeanHelper {
 		final List<Annotation> qualifiers = new ArrayList<Annotation>();
 		for (Annotation annotation : annotations) {
 			logger.debug("Check annotation : "+annotation+"...");
-			System.out.println("Check annotation : "+annotation+"...");
 			if (bm.isQualifier(annotation.annotationType())) {
 				qualifiers.add(annotation);
 			}
@@ -139,12 +134,10 @@ public final class BeanHelper {
 		}
 				);
 		logger.debug("Qualified bean found for class "+clazz.getSimpleName());
-		System.out.println("Qualified bean found for class "+clazz.getSimpleName());
 		for (Bean<?> bean : beans) {
 			for (Annotation annotation : bean.getQualifiers()) {
 				if(! annotation.annotationType().isAssignableFrom(Any.class)){
 					logger.debug("==> ["+annotation.annotationType()+"] Qualifier found for bean "+bean.toString());
-					System.out.println("==> ["+annotation.annotationType()+"] Qualifier found for bean "+bean.toString());
 					qualifiers.add(annotation);
 				}
 			}

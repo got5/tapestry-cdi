@@ -39,7 +39,6 @@ public class BeanManagerHolder implements Extension {
      */
     protected void saveBeanManager(@Observes final AfterBeanDiscovery afterBeanDiscovery, final BeanManager bm) {
     	HOLDER.beanManager = bm;
-    	System.out.println("########### bm : "+bm);
     }
 }
 
