@@ -39,7 +39,7 @@ No more configurations are needed.
 Add the tapestry-cdi maven dependency
 
     <dependency>
-      <groupId>org.got5</groupId>
+      <groupId>org.apache.tapestry</groupId>
 	    <artifactId>tapestry-cdi</artifactId>
 	    <version>1.0.0-SNAPSHOT</version>
     </dependency>

@@ -1,6 +1,9 @@
+description = "Bridge to CDI for Apache Tapestry 5 Project"
+
 apply plugin: JavaPlugin
 
 version = '1.0.0-SNAPSHOT'
+group = "org.apache.tapestry"
 
 buildDir = 'target/gradle-build'
        
