@@ -19,7 +19,7 @@ import javax.inject.Named;
 
 @Named("named")
 public class NamedPojo {
-    public String name() {
+    public String getName() {
         return "injected named pojo";
     }
     
