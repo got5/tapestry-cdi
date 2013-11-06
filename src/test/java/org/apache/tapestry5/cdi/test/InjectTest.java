@@ -15,6 +15,7 @@
  */
 package org.apache.tapestry5.cdi.test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -42,6 +43,7 @@ import org.apache.tapestry5.cdi.test.pages.RequestScopePage;
 import org.apache.tapestry5.cdi.test.pages.SessionScopePage;
 import org.apache.tapestry5.cdi.test.pages.SomePage;
 import org.apache.tapestry5.cdi.test.pages.StatefulPage;
+import org.apache.tapestry5.cdi.test.pages.StereotypePage;
 import org.apache.tapestry5.cdi.test.pages.VegetablePage;
 import org.apache.tapestry5.cdi.test.pages.WSPage;
 import org.apache.tapestry5.func.Mapper;
@@ -62,7 +64,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -296,6 +297,28 @@ public class InjectTest {
     	 assertTrue("Injection of webservice failed in page WSPage", output.contains("Hello John"));
     }
     
+    @Test
+    @InSequence(11)
+    public void checkStereotype() throws IOException {
+    	
+    	HttpClient client  = new HttpClient();
+    	
+    	//Check if injection of specific stereotyped bean is ok 
+    	   
+    	String output = getResponse(new URL(indexUrl.toString() + "/"+ StereotypePage.class.getSimpleName()), client);
+    	assertNotNull(output);
+    	assertTrue("Injection of stereotyped bean failed in page StereotypePage", output.contains("Stereotype bean:true"));
+    	assertTrue("Stereotype Bean not SessionScoped as expected in page StereotypePage", output.contains("Same instance:true"));
+    	
+    	//Check if the bean is really SessionScoped as its Stereotype says
+
+    	output = getResponse(indexUrl, client);
+    	assertTrue("Stereotype Bean not SessionScoped as expected in page StereotypePage", output.contains("stereotype:true"));
+    	output = getResponse(new URL(indexUrl.toString() + "/"+  InvalidateSessionPage.class.getSimpleName()), client);
+    	assertNotNull(output);
+    	output = getResponse(indexUrl, client);
+    	assertTrue("Stereotype Bean not SessionScoped as expected in page StereotypePage", output.contains("stereotype:false"));
+    }
     
     /**
      * Create a jar archive for tapestry-cdi
@@ -385,6 +408,7 @@ public class InjectTest {
     
     /**
      * Connect to an url thanks to an HttpClient if provided and return the response content as a String 
+     * Use same HttpClient to keep same HttpSession through multiple getResponse method calls  
      * @param url an url to connect to
      * @param client an HTTPClient to use to serve the url
      * @return the response as a String

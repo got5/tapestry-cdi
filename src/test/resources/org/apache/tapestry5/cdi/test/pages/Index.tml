@@ -16,5 +16,7 @@
 
     <p>${sessionscopepojo}</p>
     
+    <p>${stereotype}</p>
+    
 
 </html>

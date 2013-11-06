@@ -26,6 +26,7 @@ import org.apache.tapestry5.cdi.test.beans.NamedPojo;
 import org.apache.tapestry5.cdi.test.beans.Pojo;
 import org.apache.tapestry5.cdi.test.beans.Soup;
 import org.apache.tapestry5.cdi.test.beans.StatelessEJBBean;
+import org.apache.tapestry5.cdi.test.beans.Stereotyped;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 
@@ -70,13 +71,16 @@ public class Index {
     @javax.inject.Inject
     private Dessert dessert;
 
+    @javax.inject.Inject
+    private Stereotyped stereotyped;
+
         
    
     public String getPojo() {
-        return pojo.name();
+        return pojo.getName();
     }
     public String getNamedPojo() {
-        return namedPojo.name();
+        return namedPojo.getName();
     }
     
     public String getMessageCDI(){
@@ -99,11 +103,18 @@ public class Index {
     }
 
     public String getSessionScopePojo(){
-       if(dessert != null){
-           return "session:"+dessert.getName().equals(dessert.getOtherName());
-       }
-        return "";
-    }
+        if(dessert != null){
+            return "session:"+dessert.getName().equals(dessert.getOtherName());
+        }
+         return "";
+     }
+
+    public String getStereotype(){
+        if(stereotyped != null){
+            return "stereotype:"+stereotyped.getCheckName();
+        }
+         return "";
+     }
 
 
     public void onActivate(){
