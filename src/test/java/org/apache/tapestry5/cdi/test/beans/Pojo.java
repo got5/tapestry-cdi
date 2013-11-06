@@ -15,8 +15,9 @@
  */
 package org.apache.tapestry5.cdi.test.beans;
 
+
 public class Pojo {
-    public String name() {
+    public String getName() {
         return "injected pojo";
     }
     
