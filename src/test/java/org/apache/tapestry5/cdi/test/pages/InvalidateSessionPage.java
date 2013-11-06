@@ -26,6 +26,6 @@ public class InvalidateSessionPage {
 
 
     public void onActivate(){
-        request.getSession(true).invalidate();
+    	request.getSession(true).invalidate();
     }
 }
