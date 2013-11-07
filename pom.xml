@@ -7,7 +7,7 @@
     <version>7</version>
   </parent>
   
-  <groupId>org.apache.tapestry</groupId>
+  <groupId>org.got5</groupId>
   <artifactId>tapestry-cdi</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>Tapestry 5 CDI Module</name>
@@ -94,9 +94,21 @@
     <dependency>
       <groupId>org.apache.openejb</groupId>
       <artifactId>ziplock</artifactId>
-      <version>${arquillian-tomee-embedded.version}</version>
+      <version>${ziplock.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <version>${arquillian.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.container</groupId>
+      <artifactId>arquillian-container-spi</artifactId>
+      <version>${arquillian-container-spi.version}</version>
+      <scope>test</scope>
+    </dependency>    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -143,7 +155,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javaee-api.version>6.0-4</javaee-api.version>
     <tapestry-core.version>5.4-alpha-22</tapestry-core.version>
+    <arquillian.version>1.1.1.Final</arquillian.version>
+    <arquillian-container-spi.version>1.1.0.Final</arquillian-container-spi.version>  
     <arquillian-tomee-embedded.version>1.5.2</arquillian-tomee-embedded.version>  
+    <ziplock.version>1.5.1</ziplock.version>
     <junit.version>4.11</junit.version>
     <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
     <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
@@ -192,7 +207,7 @@
             <id>webapp</id>
             <properties>
                 <packaging.type>war</packaging.type>
-                <tomee.version>1.5.1</tomee.version>
+                <tomee.version>1.5.2</tomee.version>
                 <tomee-plugin.version>1.0.1</tomee-plugin.version>
             </properties>
       		<build>
@@ -227,24 +242,23 @@
 		        <artifactId>maven-surefire-plugin</artifactId>
 		        <version>2.13</version>
 		      </plugin>
-		      
 		      <plugin>
-                           <groupId>org.apache.openejb.maven</groupId>
-                           <artifactId>tomee-maven-plugin</artifactId>
-                           <version>${tomee-plugin.version}</version>
-                           <configuration>
-                           		  <simpleLog>true</simpleLog>	
-                                  <tomeeVersion>${tomee.version}</tomeeVersion>
-                                  <!-- <debug>true</debug> -->
-                                  <tomeeClassifier>plus</tomeeClassifier>
-                                  <libs>
-                                         <lib>org.apache.tapestry:tapestry-core:${tapestry-core.version}</lib>
-                                         <lib>org.apache.tapestry:tapestry-ioc:${tapestry-core.version}</lib>
-                                         <lib>org.got5:tapestry-cdi:${tapestry-cdi.version}</lib>               
-                                  </libs>
-                                  <args>-Xms256m -Xmx1024m</args>
-                           </configuration>
-               </plugin>
+               <groupId>org.apache.openejb.maven</groupId>
+               <artifactId>tomee-maven-plugin</artifactId>
+               <version>${tomee-plugin.version}</version>
+               <configuration>
+               		  <simpleLog>true</simpleLog>	
+                      <tomeeVersion>${tomee.version}</tomeeVersion>
+                      <!-- <debug>true</debug> -->
+                      <tomeeClassifier>plus</tomeeClassifier>
+                      <libs>
+                             <lib>org.apache.tapestry:tapestry-core:${tapestry-core.version}</lib>
+                             <lib>org.apache.tapestry:tapestry-ioc:${tapestry-core.version}</lib>
+                             <lib>org.got5:tapestry-cdi:${tapestry-cdi.version}</lib>               
+                      </libs>
+                      <args>-Xms256m -Xmx1024m</args>
+               </configuration>
+          </plugin>
 		  </plugins>
 		  </build>
     </profile>
