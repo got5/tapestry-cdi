@@ -1,7 +1,7 @@
 Tapestry-cdi
 ============
-As a reminder, CDI is the Java EE standard for Dependency Injection and Aspect Oriented Programming.
-Tapestry-CDI module allows injecting all kind of JSR 299 managed beans (POJO, EJB, web service, ...) as they are managed by the CDI-container.
+As a reminder, CDI is the Java EE standard for Dependency Injection and Aspect Oriented Programming.  
+Tapestry-CDI module allows injecting all kind of JSR 299 managed beans (POJO, EJB, web service, ...) as they are managed by the CDI-container.  
 The implementation is standard and has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas) and [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) !
 
 Features
@@ -13,14 +13,14 @@ Features
 
 * Injection by constructor
 
-  Contributes to [ObjectProvider](http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/ioc/ObjectProvider.html) so that we can @Inject CDI beans into tapestry services contructors.
+  Contributes to [ObjectProvider](http://tapestry.apache.org/current/apidocs/org/apache/tapestry5/ioc/ObjectProvider.html) so that we can @Inject CDI beans into tapestry services contructors.  
   So beans can be injected by field or by constructor.
 
 * Qualifiers
 
-  To disambiguate when injecting same type but different implementations, the module provides support for qualifier which is part of CDI specification. 
-  You can use qualifiers into pages, components and services.
-  For the time being, this module is the only implementation that supports CDI Qualifiers in Tapestry.
+  To disambiguate when injecting same type but different implementations, the module provides support for qualifier which is part of CDI specification.   
+  You can use qualifiers into pages, components and services.  
+  For the time being, this module is the only implementation that supports CDI Qualifiers in Tapestry.  
 
 * Helpers
 
@@ -28,32 +28,34 @@ Features
 
 * IOC isolation
  
-  The module assures to have no conflict with the tapestry's IOC (Inversion of Control). 
+  The module assures to have no conflict with the tapestry's IOC (Inversion of Control).   
   Indeed, as there are beans managed by the java EE container and others beans managed by the framework, work has been made to prevent one to take control over the beans it is not supposed to manage.
 
 * Stereotypes
 
-  [Stereotypes](http://docs.jboss.org/weld/reference/latest/en-US/html/stereotypes.html) are handled such as you can define and use your own stereotypes.
+  [Stereotypes](http://docs.jboss.org/weld/reference/latest/en-US/html/stereotypes.html) are handled such as you can define and use your own stereotypes.  
   A [stereotype](http://docs.jboss.org/weld/reference/latest/en-US/html/stereotypes.html) is an annotation, annotated @Stereotype, that packages several other annotations.
   
 * Standard
   
-  The implementation is standard, not container specific! 
-  Actually, the module has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas) and [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) !
+  The implementation is standard, not container specific!   
+  Actually, the module has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas) and [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) !  
   See [build.gradle](https://github.com/got5/tapestry-cdi/blob/master/build.gradle) for more details on test environments 
 
 Installation 
 ------------
-By adding the module to your project’s dependencies, you are good to go. 
+By adding the module to your project’s dependencies, you are good to go.   
 No more configurations are needed. 
 
-Add the tapestry-cdi maven dependency
+Add the tapestry-cdi maven dependency for tapestry 5.4
 
     <dependency>
       <groupId>org.got5</groupId>
 	    <artifactId>tapestry-cdi</artifactId>
 	    <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    
+for tapestry 5.3, use the 0.0.1 release
     
 and the following maven repositories
 
@@ -79,7 +81,7 @@ and the following maven repositories
       </snapshots>
     </repository>
 
-To install the module locally 
+To install the module locally , just do "__mvn install__" or "__gradle build__"
 
 Usage
 -----
@@ -114,7 +116,7 @@ This is to prevent loading conflicts between CDI and tapestry-ioc. So, make sure
 Using tapestry services with CDI beans
 --------------------------------------
 
-Suppose you have implemented a bean in your tapestry webapp. It will be, by default, managed by CDI. 
+Suppose you have implemented a bean in your tapestry webapp. It will be, by default, managed by CDI.   
 Now if you want to use some tapestry services into it, you will have to let tapestry-ioc manage it. See snippet below. 
 
 Let tapestry-ioc manage your bean. It will become a tapestry service.
@@ -204,7 +206,7 @@ As an illustration, we show a ValueEncoderSource contribution declared in the ap
   			configuration.add(Choice.class, factory);
 		}
 
-Where ChoiceManager is an CDI bean injected thanks to the @org.apache.tapestry5.ioc.annotations.Inject annotation.
+Where ChoiceManager is an CDI bean injected thanks to the @org.apache.tapestry5.ioc.annotations.Inject annotation.  
 The ChoiceEncoder implementation looks like :
 
 		package mypackage.gui.services;
@@ -233,11 +235,20 @@ Note that we do not use any @Inject here
 
 * For beans coming from core project and already managed by CDI (existing META-INF/beans.xml) , there is no need for any declaration in the appModule.
 
+Tests
+-----
+
+To run the unit tests against one of the following application servers : 
+
+* For Apache TomEE : "__gradle tomeeEmbeddedTest__"
+* For Glassfish v3 : "__gradle glassfishManagedTest__"
+* For JBoss Application Server 7 : "__gradle jbossAS7ManagedTest__" 
+
 What’s next ?
 -------------
 The project is fully functional but it is far from complete. 
 
-Indeed, CDI brings with it a lot of powerful functionalities we would like to see in Tapestry.
-Specially, the @ConversationScope, @Tansactional and @Secure annotations provided by CDI 1.1 api (not yet implemented by application servers except Glassfish 4) 
+Indeed, CDI brings with it a lot of powerful functionalities we would like to see in Tapestry.  
+Specially, the @ConversationScope, @Tansactional and @Secure annotations provided by CDI 1.1 api (not yet implemented by application servers except Glassfish 4)   
 
 A demo project is coming soon ...
