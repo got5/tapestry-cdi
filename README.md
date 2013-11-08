@@ -1,7 +1,9 @@
 Tapestry-cdi
 ============
 As a reminder, CDI is the Java EE standard for Dependency Injection and Aspect Oriented Programming.  
+
 Tapestry-CDI module allows injecting all kind of JSR 299 managed beans (POJO, EJB, web service, ...) as they are managed by the CDI-container.  
+
 The implementation is standard and has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas) and [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) !
 
 Features
@@ -81,7 +83,7 @@ and the following maven repositories
       </snapshots>
     </repository>
 
-To install the module locally , just do "__mvn install__" or "__gradle build__"
+Note : To install the module locally , just do "__mvn install__"
 
 Usage
 -----

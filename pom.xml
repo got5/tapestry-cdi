@@ -154,7 +154,7 @@
     <tapestry-cdi.version>1.0.0-SNAPSHOT</tapestry-cdi.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javaee-api.version>6.0-4</javaee-api.version>
-    <tapestry-core.version>5.4-alpha-22</tapestry-core.version>
+    <tapestry-core.version>5.4-alpha-24</tapestry-core.version>
     <arquillian.version>1.1.1.Final</arquillian.version>
     <arquillian-container-spi.version>1.1.0.Final</arquillian-container-spi.version>  
     <arquillian-tomee-embedded.version>1.5.2</arquillian-tomee-embedded.version>  

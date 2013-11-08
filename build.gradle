@@ -7,7 +7,7 @@ version = '1.0.0-SNAPSHOT'
 buildDir = 'target/gradle-build'
        
 libraryVersions = [
-    tapestry: '5.4-alpha-22', 
+    tapestry: '5.4-alpha-24', 
     javaeeapi: '6.0-4', 
     tomee: '1.5.2', 
     ziplock: '1.5.1',
