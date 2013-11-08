@@ -7,7 +7,7 @@
     <version>7</version>
   </parent>
   
-  <groupId>org.got5</groupId>
+  <groupId>org.apache.tapestry</groupId>
   <artifactId>tapestry-cdi</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>Tapestry 5 CDI Module</name>
@@ -254,7 +254,7 @@
                       <libs>
                              <lib>org.apache.tapestry:tapestry-core:${tapestry-core.version}</lib>
                              <lib>org.apache.tapestry:tapestry-ioc:${tapestry-core.version}</lib>
-                             <lib>org.got5:tapestry-cdi:${tapestry-cdi.version}</lib>               
+                             <lib>org.apache.tapestry:tapestry-cdi:${tapestry-cdi.version}</lib>               
                       </libs>
                       <args>-Xms256m -Xmx1024m</args>
                </configuration>

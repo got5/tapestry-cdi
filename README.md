@@ -46,44 +46,16 @@ Features
 
 Installation 
 ------------
-By adding the module to your project’s dependencies, you are good to go.   
-No more configurations are needed. 
+To install the module locally , just do "__mvn install__"
 
-Add the tapestry-cdi maven dependency for tapestry 5.4
+Then by adding the module to your project’s dependencies, you are good to go.   
+
 
     <dependency>
-      <groupId>org.got5</groupId>
+      <groupId>org.apache.tapestry</groupId>
 	    <artifactId>tapestry-cdi</artifactId>
 	    <version>1.0.0-SNAPSHOT</version>
     </dependency>
-    
-for tapestry 5.3, use the 0.0.1 release
-    
-and the following maven repositories
-
-    <repository>
-      <id>pullrequest-snapshot</id>
-      <url>http://nexus.pullrequest.org/content/repositories/snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-
-    <repository>
-      <id>pullrequest-release</id>
-      <url>http://nexus.pullrequest.org/content/repositories/releases/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-
-Note : To install the module locally , just do "__mvn install__"
 
 Usage
 -----
