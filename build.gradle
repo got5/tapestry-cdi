@@ -8,9 +8,9 @@ group = "org.apache.tapestry"
 buildDir = 'target/gradle-build'
        
 libraryVersions = [
-    tapestry: '5.4-alpha-24', 
+    tapestry: '5.4-alpha-29', 
     javaeeapi: '6.0-4', 
-    tomee: '1.5.2', 
+    tomee: '1.6.0', 
     ziplock: '1.5.1',
     junit: '4.8.1', 
     commonsHttpclient: '3.1',
