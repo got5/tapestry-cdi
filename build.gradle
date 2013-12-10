@@ -7,7 +7,7 @@ group = "org.apache.tapestry"
 
 buildDir = 'target/gradle-build'
        
-libraryVersions = [
+project.ext.libraryVersions = [
     tapestry: '5.4-alpha-29', 
     javaeeapi: '6.0-4', 
     tomee: '1.6.0', 
@@ -26,27 +26,31 @@ libraryVersions = [
 
 repositories {
     mavenCentral()
-    mavenRepo urls: 'http://repository.jboss.org/nexus/content/groups/public'
-    mavenRepo urls: 'http://repository.jboss.org/nexus/content/repositories'
-    mavenRepo urls: 'https://repository.apache.org/content/groups/staging' // For access to Apache Staging (Preview) packages
+    mavenRepo url: 'http://repository.jboss.org/nexus/content/groups/public'
+    mavenRepo url: 'http://repository.jboss.org/nexus/content/repositories'
+    mavenRepo url: 'https://repository.apache.org/content/groups/staging' // For access to Apache Staging (Preview) packages
 }
 
 configurations {
-    compileOnly
+    compileOnly 
     jboss
     glassfish
-    tomeeEmbeddedTestRuntime { extendsFrom testRuntime, compileOnly }
+    tomeeEmbeddedTestRuntime  { extendsFrom testRuntime, compileOnly }
     jbossAS7ManagedTestRuntime { extendsFrom testRuntime, compileOnly }
     glassfishManagedTestRuntime { extendsFrom testRuntime, compileOnly }
 }
 
 dependencies {
     compile group: 'org.apache.tapestry', name: 'tapestry-core', version: libraryVersions.tapestry
-   
+    
     // replace javax.enterprise:cdi-api with group: 'org.jboss.spec', name: 'jboss-javaee-6.0', version: libraryVersions.jbossJavaeeSpec to compile against full Java EE API
     compileOnly group: 'javax.enterprise', name: 'cdi-api', version: libraryVersions.cdi
     
-    testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: libraryVersions.tapestry
+    //testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: libraryVersions.tapestry
+    testCompile (group: 'org.apache.tapestry', name: 'tapestry-test', version: libraryVersions.tapestry){
+        transitive = false
+    } 
+    
     testCompile group: 'org.apache.openejb', name: 'ziplock', version: libraryVersions.ziplock
     testCompile group: 'junit', name: 'junit', version: libraryVersions.junit
     testCompile group: 'commons-httpclient', name: 'commons-httpclient', version: libraryVersions.commonsHttpclient
@@ -56,13 +60,13 @@ dependencies {
     testRuntime group: 'org.jboss.shrinkwrap.descriptors', name: 'shrinkwrap-descriptors-impl-javaee', version: libraryVersions.shrinkwrapDesc
     
     tomeeEmbeddedTestRuntime group: 'org.apache.openejb', name: 'arquillian-tomee-embedded', version: libraryVersions.tomee
-
+    
     jbossAS7ManagedTestRuntime group: 'org.jboss.as', name: 'jboss-as-arquillian-container-managed', version: libraryVersions.jbossAS7
     jbossAS7ManagedTestRuntime group: 'org.jboss.spec', name: 'jboss-javaee-6.0', version: libraryVersions.jbossJavaeeSpec
     jboss "org.jboss.as:jboss-as-dist:$libraryVersions.jbossDistrib@zip"
  
     glassfishManagedTestRuntime group: 'org.jboss.arquillian.container', name: 'arquillian-glassfish-managed-3.1', version: libraryVersions.arquillianGlassfish
-    glassfish "org.glassfish.distributions:glassfish:$libraryVersions.glassfishDistrib@zip"    
+    glassfish "org.glassfish.distributions:glassfish:$libraryVersions.glassfishDistrib@zip"     
 }
 
 sourceSets {
@@ -100,8 +104,8 @@ task glassfishManagedTest(type: Test){
 }
 
 tasks.withType(Test).matching({ t-> t.name.endsWith('Test') } as Spec).each { t ->
-    t.testClassesDir = sourceSets.test.classesDir
-    t.classpath = sourceSets.test.classes + sourceSets.main.classes + configurations[t.name + 'Runtime']
+    t.testClassesDir = sourceSets.test.output.classesDir
+    t.classpath = sourceSets.test.output + sourceSets.main.output + configurations[t.name + 'Runtime']
 }
 
 test {
