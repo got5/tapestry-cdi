@@ -225,4 +225,3 @@ The project is fully functional but it is far from complete.
 Indeed, CDI brings with it a lot of powerful functionalities we would like to see in Tapestry.  
 Specially, the @ConversationScope, @Tansactional and @Secure annotations provided by CDI 1.1 api (not yet implemented by application servers except Glassfish 4)   
 
-A demo project is coming soon ...
