@@ -217,7 +217,7 @@ To run the unit tests against one of the following application servers :
 * For Apache TomEE : "__gradle tomeeEmbeddedTest__"
 * For Glassfish v3 : "__gradle glassfishManagedTest__"
 * For JBoss Application Server 7 : "__gradle jbossAS7ManagedTest__" 
-* * For WebSphere (WLP V8.5) : "__gradle websphereManagedTest__" (requires a local server [installation](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-non-eclipse-environments/))
+* For WebSphere (WLP V8.5) : "__gradle websphereManagedTest__" (requires a local server [installation](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-non-eclipse-environments/))
 
 What’s next ?
 -------------
