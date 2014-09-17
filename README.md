@@ -4,7 +4,7 @@ As a reminder, CDI is the Java EE standard for Dependency Injection and Aspect O
 
 Tapestry-CDI module allows injecting all kind of JSR 299 managed beans (POJO, EJB, web service, ...) as they are managed by the CDI-container.  
 
-The implementation is standard and has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas) and [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) !
+The implementation is standard and has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas), [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) and [WebSphere Liberty Profile](https://developer.ibm.com/wasdev/docs/introducing_the_liberty_profile/)!
 
 Features
 --------
@@ -41,7 +41,7 @@ Features
 * Standard
   
   The implementation is standard, not container specific!   
-  Actually, the module has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas) and [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) !  
+  Actually, the module has been tested against [Apache TomEE](http://tomee.apache.org/apache-tomee.html), [JBoss Application Server 7](http://www.jboss.org/jbossas), [Glassfish v3](https://wikis.oracle.com/display/glassfish/PlanForGlassFishV3) and [WebSphere Liberty Profile](https://developer.ibm.com/wasdev/docs/introducing_the_liberty_profile/) !  
   See [build.gradle](https://github.com/got5/tapestry-cdi/blob/master/build.gradle) for more details on test environments 
 
 Installation 
@@ -217,6 +217,7 @@ To run the unit tests against one of the following application servers :
 * For Apache TomEE : "__gradle tomeeEmbeddedTest__"
 * For Glassfish v3 : "__gradle glassfishManagedTest__"
 * For JBoss Application Server 7 : "__gradle jbossAS7ManagedTest__" 
+* * For WebSphere (WLP V8.5) : "__gradle websphereManagedTest__" (requires a local server [installation](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-non-eclipse-environments/))
 
 What’s next ?
 -------------

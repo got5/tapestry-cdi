@@ -32,4 +32,11 @@
         </configuration>
     </container>
   
+  <container qualifier="websphere_managed">
+  	<configuration>
+  	    <property name="wlpHome">${env.WEBSPHERE_HOME}</property>
+  	    <property name="serverName">defaultServer</property>
+  	    <property name="httpPort">9080</property>
+  	</configuration>
+ </container>
 </arquillian>

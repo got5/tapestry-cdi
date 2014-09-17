@@ -20,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.enterprise.inject.spi.Extension;
@@ -63,6 +64,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -77,6 +79,15 @@ public class InjectTest {
     
     private static final String METAINF_PATH = "src/main/resources/META-INF/";
         		
+    private static final String ARQUILLIAN_LAUNCH_PARAMETER = "arquillian.launch"; 
+	
+    private static final String WEBSPHERE_PARAMETER_VALUE = "websphere_managed"; 
+	
+    /**
+     * Get the container name from JVM argument
+     * */
+    private static final String container = System.getProperty(ARQUILLIAN_LAUNCH_PARAMETER);
+    
     /**
      * Generate a web archive for arquillian
      * @return a WebArchive object
@@ -131,6 +142,15 @@ public class InjectTest {
 		    	war.addAsLibraries(createJarArchive("tapestry-cdi.jar"));
 		    	war.addAsWebInfResource(new File(TEST_RESOURCES_ROOT_PATH + "log4j.xml"));
     	return war;
+    }
+    
+    /**
+     * Remove the last "/" if it exists
+     * Prevent duplicate "/"
+     * */
+    @Before
+    public void fixIndexUrl() throws MalformedURLException{
+        indexUrl = (indexUrl.toString().endsWith("/") ? new URL(indexUrl.toString().substring(0,  indexUrl.toString().length()-1)) : indexUrl);
     }
     
     @Test
@@ -338,15 +358,19 @@ public class InjectTest {
                 		archiveName)
                 .addPackages(true,
                         CDIInjectModule.class.getPackage()
-                                .getName())
-                // do not include test package
-                .deletePackages(true,
-                        InjectTest.class.getPackage()
-                                .getName())
-                .addAsManifestResource(
-                        new StringAsset(BeanManagerHolder.class
-                                .getName()),
-                        "services/" + Extension.class.getName());
+                                .getName());
+    	// Do not include test package except for websphere
+    	if(!WEBSPHERE_PARAMETER_VALUE.equalsIgnoreCase(container)){
+    		// Do not include test package
+    		jar = jar .deletePackages(true,
+    				InjectTest.class.getPackage()
+    				.getName());
+    	}
+
+    	jar = jar.addAsManifestResource(
+    			new StringAsset(BeanManagerHolder.class
+    					.getName()),
+    					"services/" + Extension.class.getName());
 
     	jar.addAsManifestResource(
                     new StringAsset(TapestryExtension.class.getName()),

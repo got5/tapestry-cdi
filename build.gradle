@@ -8,20 +8,21 @@ group = "org.apache.tapestry"
 buildDir = 'target/gradle-build'
        
 project.ext.libraryVersions = [
-    tapestry: '5.4-alpha-29', 
+    tapestry: '5.4-beta-22', 
     javaeeapi: '6.0-4', 
     tomee: '1.6.0', 
     ziplock: '1.5.1',
     junit: '4.8.1', 
     commonsHttpclient: '3.1',
-    arquillian: '1.1.1.Final', 
+    arquillian: '1.1.5.Final', 
     jbossJavaeeSpec: '1.0.0.Final',
     arquillianGlassfish: '1.0.0.CR4',
     glassfishDistrib: '3.1.1-b04', 
     jbossDistrib: '7.1.1.Final', 
     cdi: '1.0-SP4',
     jbossAS7: '7.1.1.Final', 
-    shrinkwrapDesc: '2.0.0-alpha-3'
+    shrinkwrapDesc: '2.0.0-alpha-3',
+    websphere: '1.0.0.Beta1'
 ]
 
 repositories {
@@ -38,6 +39,7 @@ configurations {
     tomeeEmbeddedTestRuntime  { extendsFrom testRuntime, compileOnly }
     jbossAS7ManagedTestRuntime { extendsFrom testRuntime, compileOnly }
     glassfishManagedTestRuntime { extendsFrom testRuntime, compileOnly }
+    websphereManagedTestRuntime { extendsFrom testRuntime, compileOnly }
 }
 
 dependencies {
@@ -67,6 +69,9 @@ dependencies {
  
     glassfishManagedTestRuntime group: 'org.jboss.arquillian.container', name: 'arquillian-glassfish-managed-3.1', version: libraryVersions.arquillianGlassfish
     glassfish "org.glassfish.distributions:glassfish:$libraryVersions.glassfishDistrib@zip"     
+    
+    websphereManagedTestRuntime group: 'org.jboss.arquillian.container', name: 'arquillian-wlp-managed-8.5', version: libraryVersions.websphere
+    testRuntime files("${System.properties['java.home']}/../lib/tools.jar")
 }
 
 sourceSets {
@@ -101,6 +106,10 @@ task jbossAS7ManagedTest(type: Test) {
 task glassfishManagedTest(type: Test){
   systemProperty 'arquillian.launch', "glassfish_managed"
    dependsOn { resolveGlassfish }
+}
+
+task websphereManagedTest(type: Test) {
+  systemProperty 'arquillian.launch', "websphere_managed"
 }
 
 tasks.withType(Test).matching({ t-> t.name.endsWith('Test') } as Spec).each { t ->
