@@ -1,11 +1,11 @@
 apply plugin: JavaPlugin
 
-version = '0.0.1'
+version = '0.1.0'
 
 buildDir = 'target/gradle-build'
        
 libraryVersions = [
-    tapestry: '5.3.7', 
+    tapestry: '5.3.8', 
     javaeeapi: '6.0-4', 
     tomee: '1.5.2', 
     ziplock: '1.5.1',
